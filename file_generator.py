@@ -16,11 +16,12 @@ def file_generator(n, alfabeto, minimo, maximo, split):
 
     palavras_geradas = []
 
+    tamanho_alfabeto = len(alfabeto)-1
 
     for _ in range(n):
         numero_letras = randint(minimo, maximo)
         
-        nova_palavra = "".join([alfabeto[randint(0, len(alfabeto)-1)] for _ in range(numero_letras)])
+        nova_palavra = "".join([ alfabeto[randint(0, tamanho_alfabeto)] for _ in range(numero_letras)])
 
         palavras_geradas.append(nova_palavra)
     
