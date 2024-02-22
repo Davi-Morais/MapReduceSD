@@ -1,22 +1,43 @@
 from random import randint
+from os import path
 
-def file_generator(n, alfabeto, minimo, maximo, split):
+def criar_arquivos(nome_arquivo, split):
+    arquivos = []
+    for i in range(split):
+        nome = "{}{}.txt".format(nome_arquivo, i)
+        if not path.exists(nome):
+            open(nome, "x").close()
+            arquivos.append(nome)
+        else:
+            arquivos.append(nome)
+    return arquivos
+
+
+    # for i in range(split):
+        # arquivo = open("{}{}.txt".format(nome_arquivo, i), "x")
+        
+        
+        # arquivo.close()
+
+def file_generator(n, alfabeto, minimo, maximo, nome_arquivo, split):
     """Gera n palavras aleatorias que podem possuir qualquer tamanho
-    entre um minimo e um maximo. As palavras geradas devem ser divididas(split)
-    em conjuntos que serão escritos em arquivos diferentes.
+    entre um minimo e um maximo. Gera um arquivo com essas palavras
 
     Args:
         n (int): numero de palavras geradas.
         alfabeto (string): uma string com as letras que devem ser usadas para gerar as palavras.
         minimo (int): tamanho minimo que uma palavra pode ter
         maximo (int): tamanho maximo que uma palavra pode ter
-        split (int): quantidade de arquivos que devem ser gerados
+        nome_arquivo (string): nome do arquivo
+        split (int): divisao
     """
 
 
     palavras_geradas = []
 
     tamanho_alfabeto = len(alfabeto)-1
+
+    arquivos = criar_arquivos(nome_arquivo=nome_arquivo, split=split)
 
     for _ in range(n):
         numero_letras = randint(minimo, maximo)
@@ -26,8 +47,18 @@ def file_generator(n, alfabeto, minimo, maximo, split):
         palavras_geradas.append(nova_palavra)
     
 
+    
+    splited = [palavras_geradas[i::split] for i in range(split)]
+
+    print(splited)
+
+    for i in range(split):
+        arq = open(arquivos[i], "w")
+        arq.write(" ".join(splited[i]))
+
+
     return palavras_geradas
 
 
-# palavras = file_generator(20, "abcdef", 2, 6, 10)
+palavras = file_generator(20, "abcdef", 2, 6, "arquivo_teste", 5)
 # print(palavras)
