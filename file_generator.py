@@ -1,6 +1,7 @@
-from random import randint
+from random import randint, choices
 from os import path, makedirs
 from pathlib import Path
+
 
 def criar_arquivos(nome_arquivo, split):
     arquivos = []
@@ -19,6 +20,17 @@ def criar_arquivos(nome_arquivo, split):
     return arquivos
 
 
+def gerar_palavras(n, alfabeto, minimo, maximo):
+    palavras_geradas = []
+    for _ in range(n):
+        numero_letras = randint(minimo, maximo)
+        
+        nova_palavra = "".join(choices(alfabeto, k=numero_letras))
+
+        palavras_geradas.append(nova_palavra)
+    return palavras_geradas
+
+
 def file_generator(n, alfabeto, minimo, maximo, nome_arquivo, split):
     """Gera n palavras aleatorias que podem possuir qualquer tamanho
     entre um minimo e um maximo. Gera um arquivo com essas palavras
@@ -32,22 +44,9 @@ def file_generator(n, alfabeto, minimo, maximo, nome_arquivo, split):
         split (int): divisao
     """
 
-
-
-    tamanho_alfabeto = len(alfabeto)-1
-
     arquivos = criar_arquivos(nome_arquivo=nome_arquivo, split=split)
 
-
-    palavras_geradas = []
-    for _ in range(n):
-        numero_letras = randint(minimo, maximo)
-        
-        nova_palavra = "".join([ alfabeto[randint(0, tamanho_alfabeto)] for _ in range(numero_letras)])
-
-        palavras_geradas.append(nova_palavra)
-    
-
+    palavras_geradas = gerar_palavras(n=n, alfabeto=alfabeto, minimo=minimo, maximo=maximo)
     
     splited = [palavras_geradas[i::split] for i in range(split)]
 
