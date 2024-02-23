@@ -1,17 +1,18 @@
 from random import randint
 from os import path, makedirs
+from pathlib import Path
 
 def criar_arquivos(nome_arquivo, split):
     arquivos = []
+
+    dir_name = "arquivos"
+    if not path.exists(dir_name):
+        makedirs(dir_name)
+    
     for i in range(split):
-
-        dir_name = "arquivos"
-        if not path.exists(dir_name):
-            makedirs("arquivos")
-
-        path_arquivo = "./arquivos/{}{}.txt".format(nome_arquivo, i)
+        path_arquivo = Path("./{}/{}{}.txt".format(dir_name, nome_arquivo, i))
         if not path.exists(path_arquivo):
-            open(path_arquivo, "x").close()
+            path_arquivo.touch()
             arquivos.append(path_arquivo)
         else:
             arquivos.append(path_arquivo)
