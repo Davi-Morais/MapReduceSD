@@ -15,7 +15,7 @@ def EmitirIntermediario(chave, ocorrencia):
         open(intermediario, 'w').close()
 
     with open(intermediario, "a") as arquivo:
-        arquivo.write("{} {}\n".format(chave, ocorrencia))
+        arquivo.write("{} {} ".format(chave, ocorrencia))
 
 
 def Map(path_arquivo):
