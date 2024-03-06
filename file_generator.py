@@ -1,23 +1,23 @@
 from random import randint, choices
-from os import path, makedirs
-from pathlib import Path
+from os import path, makedirs, listdir, remove
 
 
 def criar_arquivos(nome_arquivo, split):
-    arquivos = []
 
     dir_name = "arquivos"
     if not path.exists(dir_name):
         makedirs(dir_name)
     
+    for arquivo in listdir(dir_name):
+        remove(f'{dir_name}/{arquivo}')
+    
+    arquivos_criados = []
     for i in range(split):
-        path_arquivo = Path("./{}/{}{}.txt".format(dir_name, nome_arquivo, i))
-        if not path.exists(path_arquivo):
-            path_arquivo.touch()
-            arquivos.append(path_arquivo)
-        else:
-            arquivos.append(path_arquivo)
-    return arquivos
+        novo_arquivo_path = f'./{dir_name}/{nome_arquivo}{i}.txt'
+        open(novo_arquivo_path, 'x').close()
+        arquivos_criados.append(novo_arquivo_path)
+    
+    return arquivos_criados 
 
 
 def gerar_palavras(n, alfabeto, minimo, maximo):
