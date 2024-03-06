@@ -50,7 +50,7 @@ def file_generator(n, alfabeto, minimo, maximo, nome_arquivo, split):
     
     splited = [palavras_geradas[i::split] for i in range(split)]
 
-    for i in range(split):
+    for i in range(len(splited)):
         arq = open(arquivos[i], "w")
         arq.write(" ".join(splited[i]))
 
