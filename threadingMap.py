@@ -1,7 +1,7 @@
 import logging
 import threading
 
-import Map
+from MapReduce import Map
 
 def thread_function(name):
     logging.info("Thread %s: starting", name)
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     threads = list()
     for index in range(10):
         logging.info("Main    : create and start thread %d.", index)
-        x = threading.Thread(target=Map.Map, args=("./arquivos/arquivo_teste{}.txt".format(index),))
+        x = threading.Thread(target=Map, args=("./arquivos/arquivo_teste{}.txt".format(index),))
         threads.append(x)
         x.start()
 

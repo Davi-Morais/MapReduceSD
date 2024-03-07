@@ -1,7 +1,6 @@
-from pathlib import Path
 from os import path
 
-def EmitirIntermediario(chave, ocorrencia):
+def emitir_intermediario(chave, ocorrencia):
     """Escreve em um arquivo intermediario um valor chave 
     seguido de sua acorrencia
 
@@ -17,16 +16,12 @@ def EmitirIntermediario(chave, ocorrencia):
     with open(intermediario, "a") as arquivo:
         arquivo.write("{} {}\n".format(chave, ocorrencia))
 
-
-def Map(path_arquivo):
-    """Lê um arquivo e emite a ocorrência de uma mesma palavra
-
-    Args:
-        path_arquivo (string): caminho do arquivo a ser lido
-    """
-
-    arquivo = Path(path_arquivo)
-    palavras = arquivo.read_text(encoding="utf-8").split()
-    
-    for palavra in palavras:
-        EmitirIntermediario(palavra, '1')
+def ler_intermediario(intermediario):
+    dic_palavras = {}
+    with open(intermediario, 'r') as arquivo:
+        for line in arquivo.readlines():
+            chave, valor = line.strip().split()
+            if dic_palavras.get(chave) is not None:
+                dic_palavras[chave].append(valor)
+            else:
+                dic_palavras[chave] = [valor]
