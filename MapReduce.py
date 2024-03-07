@@ -1,5 +1,5 @@
 from pathlib import Path
-from emit import emitir_intermediario
+from emit import emitir_intermediario, emitir_final
 
 def Map(path_arquivo):
     """Lê um arquivo e emite a ocorrência de uma mesma palavra
@@ -13,3 +13,13 @@ def Map(path_arquivo):
     
     for palavra in palavras:
         emitir_intermediario(palavra, '1')
+
+
+def Reduce(chave, lista_ocorrencia):
+    """Recebe e emite uma chave junto da sua acorrencia
+
+    Args:
+        chave (string): o nome de uma chave/palavra qualquer
+        valor (string[]): uma lista de ocorrencias dessa chave
+    """
+    emitir_final(chave, len(lista_ocorrencia))

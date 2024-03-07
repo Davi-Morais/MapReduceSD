@@ -1,5 +1,6 @@
 from os import path
 
+
 def emitir_intermediario(chave, ocorrencia):
     """Escreve em um arquivo intermediario um valor chave 
     seguido de sua acorrencia
@@ -16,6 +17,7 @@ def emitir_intermediario(chave, ocorrencia):
     with open(intermediario, "a") as arquivo:
         arquivo.write("{} {}\n".format(chave, ocorrencia))
 
+
 def ler_intermediario(intermediario):
     dic_palavras = {}
     with open(intermediario, 'r') as arquivo:
@@ -25,3 +27,7 @@ def ler_intermediario(intermediario):
                 dic_palavras[chave].append(valor)
             else:
                 dic_palavras[chave] = [valor]
+
+
+def emitir_final(chave, ocorrencia):
+    pass
