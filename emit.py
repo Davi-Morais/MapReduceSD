@@ -34,5 +34,15 @@ def ler_intermediario(intermediario):
     return dic_palavras
 
 
-def emitir_final(chave, ocorrencia):
-    pass
+def deletar_final(final):
+    if path.exists(final):
+        remove(final)
+
+
+def emitir_final(chave, ocorrencias):
+    final = './final'
+    if not path.exists(final):
+        open(final, 'w').close()
+
+    with open(final, 'a') as arquivo:
+        arquivo.write("{} {}\n".format(chave, ocorrencias))
