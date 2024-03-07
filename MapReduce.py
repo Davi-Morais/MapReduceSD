@@ -20,6 +20,6 @@ def Reduce(chave, lista_ocorrencia):
 
     Args:
         chave (string): o nome de uma chave/palavra qualquer
-        valor (string[]): uma lista de ocorrencias dessa chave
+        lista_ocorrencia (string[]): uma lista de ocorrencias dessa chave
     """
     emitir_final(chave, len(lista_ocorrencia))

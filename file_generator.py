@@ -53,6 +53,7 @@ def file_generator(n, alfabeto, minimo, maximo, nome_arquivo, split):
     for i in range(len(splited)):
         arq = open(arquivos[i], "w")
         arq.write(" ".join(splited[i]))
+        arq.close()
 
 
     return palavras_geradas

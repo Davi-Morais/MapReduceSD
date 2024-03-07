@@ -27,6 +27,7 @@ def ler_intermediario(intermediario):
                 dic_palavras[chave].append(valor)
             else:
                 dic_palavras[chave] = [valor]
+    return dic_palavras
 
 
 def emitir_final(chave, ocorrencia):
