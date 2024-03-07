@@ -1,4 +1,8 @@
-from os import path
+from os import path, remove
+
+def deletar_intermediario(intermediario):
+    if path.exists(intermediario):
+        remove(intermediario)
 
 
 def emitir_intermediario(chave, ocorrencia):
