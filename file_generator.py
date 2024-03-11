@@ -59,4 +59,4 @@ def file_generator(n, alfabeto, minimo, maximo, nome_arquivo, split):
     return palavras_geradas
 
 
-palavras = file_generator(200, "abcd", 2, 4, "arquivo_teste", 10)
+palavras = file_generator(100000, "abcde", 2, 4, "arquivo_teste", 10)

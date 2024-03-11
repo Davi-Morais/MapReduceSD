@@ -5,9 +5,6 @@ from os import listdir
 from MapReduce import Map
 from emit import deletar_intermediario
 
-def thread_function(name):
-    logging.info("Thread %s: starting", name)
-    logging.info("Thread %s: finishing", name)
 
 if __name__ == "__main__":
     format = "%(asctime)s: %(message)s"
