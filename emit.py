@@ -1,4 +1,7 @@
 from os import path, remove
+from threading import Lock
+
+lock = Lock()
 
 def deletar_intermediario(intermediario):
     if path.exists(intermediario):
@@ -13,13 +16,14 @@ def emitir_intermediario(chave, ocorrencia):
         chave (string): Nome da chave
         ocorrencia (char): o total de ocorrencias
     """
-
     intermediario = "./intermediario"
+    lock.acquire()
     if not path.exists(intermediario):
         open(intermediario, 'w').close()
 
     with open(intermediario, "a") as arquivo:
         arquivo.write("{} {}\n".format(chave, ocorrencia))
+    lock.release()
 
 
 def ler_intermediario(intermediario):
@@ -41,8 +45,10 @@ def deletar_final(final):
 
 def emitir_final(chave, ocorrencias):
     final = './final'
+    lock.acquire()
     if not path.exists(final):
         open(final, 'w').close()
 
     with open(final, 'a') as arquivo:
         arquivo.write("{} {}\n".format(chave, ocorrencias))
+    lock.release()

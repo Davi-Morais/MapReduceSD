@@ -18,19 +18,19 @@ if __name__ == "__main__":
     dicionario_palavras = ler_intermediario(intermadiario)
    
 
-    threads = list()
-    for key, ocorrencia in dicionario_palavras.items():
-        x = threading.Thread(target=Reduce, args=(key, ocorrencia,))
-        threads.append(x)
-        x.start()
+    # threads = list()
+    # for key, ocorrencia in dicionario_palavras.items():
+    #     x = threading.Thread(target=Reduce, args=(key, ocorrencia,))
+    #     threads.append(x)
+    #     x.start()
         
-    for index, thread in enumerate(threads):
-        logging.info("Main    : before joining thread %d.", index)
-        thread.join()
-        logging.info("Main    : thread %d done", index)
+    # for index, thread in enumerate(threads):
+    #     logging.info("Main    : before joining thread %d.", index)
+    #     thread.join()
+    #     logging.info("Main    : thread %d done", index)
 
 
-    # Maximo de 10 threads:
-    # with ThreadPoolExecutor(max_workers=10) as executor: 
-    #     for key, ocorrencia in dicionario_palavras.items():
-    #         executor.submit(Reduce, key, ocorrencia)
+    # # Maximo de 10 threads:
+    with ThreadPoolExecutor(max_workers=10) as executor: 
+        for key, ocorrencia in dicionario_palavras.items():
+            executor.submit(Reduce, key, ocorrencia)
