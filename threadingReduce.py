@@ -1,5 +1,6 @@
 import logging
 import threading
+from concurrent.futures import ThreadPoolExecutor
 
 from MapReduce import Reduce
 from emit import deletar_final, ler_intermediario
@@ -27,3 +28,9 @@ if __name__ == "__main__":
         logging.info("Main    : before joining thread %d.", index)
         thread.join()
         logging.info("Main    : thread %d done", index)
+
+
+    # Maximo de 10 threads:
+    # with ThreadPoolExecutor(max_workers=10) as executor: 
+    #     for key, ocorrencia in dicionario_palavras.items():
+    #         executor.submit(Reduce, key, ocorrencia)
